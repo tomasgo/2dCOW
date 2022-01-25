@@ -93,6 +93,7 @@ end
 if (show), fprintf(1,'Starting grid search\n'); end
 nTopSlacks = prod(optimSpace(:,5),1);
 nSlacks    = prod(optimSpace(:,6),1);
+options(7) = false; % FIXME [!!!!] Just temporary fix
 if (~options(7)), startGridWith = 1; else, startGridWith = nGridRun - nTopSlacks + 1; end
 warpingPaths = cell(1,nGridRun);
 if (options(6) && ~isempty(ver('parallel')))
@@ -108,7 +109,6 @@ else
     for (iGrid = startGridWith:nGridRun)
         [OS(:,iGrid),warpingPaths{iGrid}] = optim_eval(X,OS(:,iGrid),OS,ref,normX,band);
         if (show), showIter(0,iGrid,nGridRun,OS(:,iGrid)); end
-        options(7) = false; % Just temporary fix
         if (options(7))
             indGrid = OS(:,1:R) == OS(1:R,iGrid);
             for (iGrid = 1:nGridRun - TopSlacks)
