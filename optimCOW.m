@@ -108,10 +108,11 @@ else
     for (iGrid = startGridWith:nGridRun)
         [OS(:,iGrid),warpingPaths{iGrid}] = optim_eval(X,OS(:,iGrid),OS,ref,normX,band);
         if (show), showIter(0,iGrid,nGridRun,OS(:,iGrid)); end
+        options(7) = false; % Just temporary fix
         if (options(7))
             indGrid = OS(:,1:R) == OS(1:R,iGrid);
             for (iGrid = 1:nGridRun - TopSlacks)
-                OS(:,iGrid) = 
+                OS(:,iGrid) = [];
             end
         end
         
