@@ -61,7 +61,8 @@ for (j = 1:2)
         ind{j}                  = k;
         tmpRef                  = permute(profImage(T,j,B{j}(k),segLen(j)),ord);
         tmpX                    = permute(profImage(X,j,B{j}(k),segLen(j)),ord); % ord needs to be modified
-        [tmpW,~]                = COW(tmpRef,tmpX,tmpSeg,slack(3 - j),[0 1 0 band(j) 0]); % Inverted because of the implementation of COW
+%         [tmpW,~]                = COW(tmpRef,tmpX,tmpSeg,slack(3 - j),[0 1 0 band(j) 0]); % Inverted because of the implementation of COW
+        [tmpW,~]                = COW(tmpX,tmpRef,tmpSeg,slack(3 - j),[0 1 0 band(j) 0]); % Inverted because of the implementation of COW
         warpPath{j,1}(ind{:},:) = permute(tmpW(:,:,1),[rev + 1, 1]);
         warpPath{j,2}(ind{:},:) = permute(tmpW(:,:,2),[rev + 1, 1]);
         

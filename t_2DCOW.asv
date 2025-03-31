@@ -3,19 +3,18 @@ close all
 clc
 % load gndfDataRed
 % Y = cat(3,X.data{:});
-Y = cat(3,Z{7},Z{77});
+Y = cat(3,Z{9},Z{80});
 figure
 ref = 1; sam = 2;
 showCh      = 1; % which "channel" is shown 
 band        = [10 20];
 optimPars   = [5 5 30 30];
 % [xAOr,wPOr] = TwoDCOWorig(Y(:,:,sam(showCh)),Y(:,:,ref(showCh)),optimPars(1:2),optimPars(3:4));
-[xAKU,wPKU] = TwoDCOW(Y(:,:,sam(showCh)),Y(:,:,ref(showCh)),optimPars(1:2),optimPars(3:4),band);
-% [Xw,warpPath] = apply2DWarp(X, warpPath, Modes, Type)
+[xAKU,wPKU] = TwoDCOW(Y(:,:,ref(showCh)),Y(:,:,ref(showCh)),optimPars(1:2),optimPars(3:4),band);
 % [xAKU,wPKU] = TwoDCOW(Z{80},Z{9},optimPars(1:2),optimPars(3:4),band);
 ah          = gobjects(3,1);
 ph          = gobjects(3,2);
-v           = 2.^linspace(13,24,7);
+v           = 2.^linspace(0,24,7);
 ah(1)       = subplot(2,2,1);
 ah(2)       = subplot(2,2,2);
 ah(3)       = subplot(2,2,3);
